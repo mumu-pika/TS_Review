@@ -1,0 +1,14 @@
+{
+  "name": "ts_review",
+  "version": "1.0.0",
+  "description": "A repo for TypeScript review and diving",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TypeScript"
+  ],
+  "author": "mumu-pika",
+  "license": "MIT"
+}
