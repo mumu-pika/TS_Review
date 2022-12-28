@@ -1,5 +1,5 @@
-// interface
-/* 
+// interface 接口
+/*
   An interface describes the structure of
   an object.
 */
@@ -29,4 +29,9 @@ hero.greet('Aloha!')
 
 // interface Addfn {
 //   (a: number, b: number): number
+// }
+
+// interface IHello {
+//   // 这里表明这个属性key值是未知的，但设定了string这个类型
+//   [prop: string]: string
 // }
