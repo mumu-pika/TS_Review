@@ -1,8 +1,12 @@
-// TS中装饰器模式
+// TS中常用内置工具类
 
-// Decorators 装饰器
-
-
+// Readonly
+// 生成一个新类型，T 中的 K 属性是只读的，K 属性是不可修改的。
+/* 
+  type Readonly<T> = {
+    [P in keyof T]-?: T[P]
+  }
+*/
 
 interface ReadonlyFoo {
   name: string
