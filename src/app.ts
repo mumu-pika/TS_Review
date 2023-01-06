@@ -8,15 +8,28 @@
 
   执行
   装饰器只在解释执行时应用一次
+
+  如果被用于类上，装饰器会在类被定义时候执行，
+  而不是在实例化时候执行
 */
 
 // 装饰器的参数多少取决于你在哪里使用装饰器
-function simpleDecorator() {
-  console.log('I am a decorator.')
+function simpleDecorator(target: string) {
+  // 在这里创建装饰器函数的工厂函数
+  return function (constructor: Function) {
+    console.log('I am a decorator.')
+    console.log(target) // 打印输出传入的参数值
+    console.log(constructor)
+  }
 }
 
+function WithTemplate(template: string, hookId: string) {
+  
+}
+
+
 // 装饰器应该指向一个未执行的函数
-// @simpleDecorator
+@simpleDecorator('new year')
 class Card {
   constructor() {
     console.log("Creating a new card game...")
