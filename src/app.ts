@@ -24,12 +24,20 @@ function simpleDecorator(target: string) {
 }
 
 function WithTemplate(template: string, hookId: string) {
-  
+  // 在这里是想要渲染一些html模板, 渲染到找到hookId的地方
+  // 对于获取到的argument但不需要使用的，我们可以用_来命名
+  return function(_: Function) {
+    const hookEl = document.getElementById(hookId)
+    if (hookEl) {
+      hookEl.innerHTML = template
+    }
+  }
 }
 
 
 // 装饰器应该指向一个未执行的函数
-@simpleDecorator('new year')
+// @simpleDecorator('new year')
+@WithTemplate('<h1>Happy New Year</h1>', 'app')
 class Card {
   constructor() {
     console.log("Creating a new card game...")
