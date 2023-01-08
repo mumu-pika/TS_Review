@@ -14,32 +14,38 @@
 */
 
 // 装饰器的参数多少取决于你在哪里使用装饰器
-function simpleDecorator(target: string) {
-  // 在这里创建装饰器函数的工厂函数
-  return function (constructor: Function) {
-    console.log('I am a decorator.')
-    console.log(target) // 打印输出传入的参数值
-    console.log(constructor)
-  }
+
+function Log(target: any, propertyName: string | Symbol) {
+  console.log('Property decorator')
+  console.log(target, propertyName)
 }
 
-function WithTemplate(template: string, hookId: string) {
-  // 在这里是想要渲染一些html模板, 渲染到找到hookId的地方
-  // 对于获取到的argument但不需要使用的，我们可以用_来命名
-  return function(_: Function) {
-    const hookEl = document.getElementById(hookId)
-    if (hookEl) {
-      hookEl.innerHTML = template
-    }
-  }
+function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log('Accessor decorator')
+  console.log(target)
+  console.log(name)
+  console.log(descriptor)
 }
 
+class Product {
+  // 我们可以将装饰器添加给属性
+  // 会在类定义的时候去执行
+  @Log
+  title: string
+  private _price: number
+  constructor(title: string, price: number) {
+    this.title = title
+    this._price = price
+  }
 
-// 装饰器应该指向一个未执行的函数
-// @simpleDecorator('new year')
-@WithTemplate('<h1>Happy New Year</h1>', 'app')
-class Card {
-  constructor() {
-    console.log("Creating a new card game...")
+  // 这里添加装饰器给类访问器
+  @Log2
+  set price(val: number) {
+    if (val > 0) this._price = val
+    else throw new Error('Invalid price - it should be positive!')
+  }
+
+  getPriceWithTax(tax: number) {
+    return this._price * (1 + tax)
   }
 }
