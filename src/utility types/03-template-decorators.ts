@@ -37,6 +37,32 @@ function WithTemplate(template: string, hookId: string) {
   }
 }
 
+function WithTemplate2(template: string, hookId: string) {
+  console.log('With Template Factory2')
+  // 在这里是想要渲染一些html模板, 渲染到找到hookId的地方
+  return function <T extends { new (...args: any[]): { cardName: string } }>(
+    originalConstructor: T
+  ) {
+    /* 
+      这里返回的构造函数会替换我们原来的类，
+      也就是我们用自定义的类来替换了原本的类，
+      这允许我们添加额外的逻辑
+    */
+    return class extends originalConstructor {
+      constructor(...args: any[]) {
+        super() // 原本的类
+        console.log('Rending template')
+        const hookEl = document.getElementById(hookId)
+        if (hookEl) {
+          hookEl.innerHTML = template
+          hookEl.querySelector('h1')!.textContent = this.cardName
+          console.log('finish With Template')
+        }
+      }
+    }
+  }
+}
+
 // 装饰器应该指向一个未执行的函数
 /*
   我们还可以给一个类添加多个装饰器；
@@ -44,10 +70,14 @@ function WithTemplate(template: string, hookId: string) {
   但是多个装饰器的创建的顺序是自上而下按顺序的；
 */
 @simpleDecorator('new year')
-@WithTemplate('<h1>Happy New Year</h1>', 'app')
+// @WithTemplate('<h1>Happy New Year</h1>', 'app')
+@WithTemplate2('<h1>Happy New Year</h1>', 'app')
 class Card {
+  cardName: string = 'PTCG'
   constructor() {
     console.log('Creating a new card game...')
   }
-  private cardName: string = 'PTCG'
 }
+
+const cardGame = new Card()
+console.log(cardGame)
