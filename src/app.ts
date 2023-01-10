@@ -1,21 +1,5 @@
-class ProjectInput {
-  templateElement: HTMLTemplateElement
-  hostElement: HTMLDivElement
-  element: HTMLFormElement
+// 引用第三方库
+// lodash
 
-  constructor() {
-    this.templateElement = document.getElementById('project-input')! as HTMLTemplateElement
-    this.hostElement = document.getElementById('app')! as HTMLDivElement
-
-    // 获取到html模板的整个节点
-    const importedNode = document.importNode(this.templateElement.content, true)
-    this.element = importedNode.firstElementChild as HTMLFormElement
-    this.attach()
-  }
-
-  private attach() {
-    this.hostElement.insertAdjacentElement('afterbegin', this.element)
-  }
-}
-
-const prjInput = new ProjectInput()
+import _ from 'lodash'
+console.log(_.shuffle([1, 2, 3]))
