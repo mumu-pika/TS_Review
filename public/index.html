@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TypeScript Review</title>
   <script src="/dist/app.js" defer></script>
+  <script type="module" src="/dist/bundle.js"></script>
 </head>
 <body>
-  <p>
+  <!-- <p>
     按F12打开工具台, 看console控制台输出
   </p>
   <div id="app"></div>
@@ -17,6 +18,25 @@
     <input type="text" placeholder="Course title" id="title">
     <input type="text" placeholder="Course price" id="price">
     <button type="submit">Save</button>
-  </form>
+  </form> -->
+
+  <template id="project-input">
+    <form>
+      <div class="form-control">
+        <label for="title">Title</label>
+        <input type="text" id="title" />
+      </div>
+      <div class="form-control">
+        <label for="description">Description</label>
+        <textarea id="description" row="3"></textarea>
+      </div>
+      <div class="form-control">
+        <label for="people">People</label>
+        <input type="number" id="people" step="1" min="0" max="10" />
+      </div>
+      <button type="submit">Add</button>
+    </form>
+  </template>
+  <div id="app"></div>
 </body>
 </html>
