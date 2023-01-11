@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/app.ts',
+  entry: './src/class-transformer/index.ts',
   output: {
     path: path.resolve(__dirname, '../dist'),
     // filename: 'bundle.[contenthash].js',
@@ -19,6 +19,7 @@ module.exports = {
       },
     ],
   },
+  // 配置模块，用来配置
   resolve: {
     extensions: ['.ts', '.js'],
   },
