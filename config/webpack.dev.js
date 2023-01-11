@@ -2,7 +2,8 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/class-transformer/index.ts',
+  // entry: './src/class-transformer/index.ts',
+  entry: './src/class-validator/index.ts',
   output: {
     path: path.resolve(__dirname, '../dist'),
     // filename: 'bundle.[contenthash].js',
