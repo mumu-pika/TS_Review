@@ -3,16 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // entry: './src/class-transformer/index.ts',
-  entry: './src/class-validator/index.ts',
+  entry: './src/app.ts',
   output: {
     path: path.resolve(__dirname, '../dist'),
     // filename: 'bundle.[contenthash].js',
     filename: 'bundle.js',
     clean: true, //自动清空, 原理: 在打包前，path整个内容清空，再进行打包
-
   },
   module: {
     rules: [
+      // loader的配置
+      {
+        test: /\.css$/, //只检测.css文件
+        use: [
+          // use 的执行顺序： 从右到左（或者从下到上）
+          'style-loader', //将js中的css通过创建style标签的方式添加到html文件中生效
+          'css-loader', //将css资源编译成commonjs的模块到js中
+        ],
+      },
       {
         test: /\.ts$/,
         use: 'ts-loader',

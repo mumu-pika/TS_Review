@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TypeScript Review</title>
-  <!-- <script src="/dist/app.js" defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeScript Review</title>
+    <!-- <script src="/dist/app.js" defer></script>
   <script src="/dist/bundle.js" defer></script> -->
-  <script src="/dist/class-transformer/index.js" defer></script>
-  <!-- <script type="module" src="/dist/bundle.js"></script> -->
-</head>
-<body>
-  <p>
-    按F12打开工具台, 看console控制台输出
-  </p>
-  <!-- <div id="app"></div>
+    <!-- <script type="module" src="/dist/bundle.js"></script> -->
+    <script
+      type="text/javascript"
+      src="https://api.map.baidu.com/getscript?v=3.0&ak=0cKjTG7j2Z9qskVse4vebd7g9fxKDkRd"
+    ></script>
+  </head>
+  <body>
+    <h1>TypeScript Review</h1>
+    <p>按F12打开工具台, 看console控制台输出</p>
+    <!-- <div id="app"></div>
   <button>Click me</button>
   <form action="">
     <input type="text" placeholder="Course title" id="title">
@@ -22,7 +24,7 @@
     <button type="submit">Save</button>
   </form> -->
 
-  <template id="project-input">
+    <!-- <template id="project-input">
     <form>
       <div class="form-control">
         <label for="title">Title</label>
@@ -38,7 +40,65 @@
       </div>
       <button type="submit">Add</button>
     </form>
-  </template>
-  <div id="app"></div>
-</body>
+  </template> -->
+
+    <!-- <div id="app"></div> -->
+    <div id="container"></div>
+    <div id="map">
+      <p>Please enter an address!---</p>
+      <p>例如: 天安门、东方明珠</p>
+    </div>
+    <form action="">
+      <input type="text" id="address" />
+      <button type="submit">Search Address</button>
+    </form>
+  </body>
 </html>
+
+<script type="text/javascript">
+  // map.centerAndZoom('上海', 11)
+  const map = new BMap.Map('container') // 创建地图实例
+  const point = new BMap.Point(121.402, 31.32) // 创建点坐标
+  map.centerAndZoom(point, 17) // 初始化地图，设置中心点坐标和地图级别
+  map.addControl(new BMap.NavigationControl()) // 控制地图的平移和缩放
+  // map.enableScrollWheelZoom(true) //开启鼠标滚轮缩放
+
+  const marker = new BMap.Marker(point) // 创建标注
+  map.addOverlay(marker) // 将标注添加到地图中
+  const opts = {
+    width: 250, // 信息窗口宽度
+    height: 100, // 信息窗口高度
+    title: 'Hello', // 信息窗口标题
+  }
+  const infoWindow = new BMap.InfoWindow('上海大学牛皮', opts) // 创建信息窗口对象
+  marker.addEventListener('click', function () {
+    map.openInfoWindow(infoWindow, map.getCenter()) // 打开信息窗口
+  })
+  // 检索POI服务提供三种检索方法：城市检索、圆形区域检索、矩形区域检索。
+  const local = new BMap.LocalSearch(map, {
+    renderOptions: { map: map, panel: 'r-result' },
+  })
+  // local.search("上海大学(宝山校区)");
+
+  // 获取模板中的表单元素信息
+  const form = document.querySelector('form')
+  const addressInput = document.getElementById('address')
+
+  // 点击提交按钮触发的回调
+  function searchAddressHandler(event) {
+    event.preventDefault()
+    // get access to the address
+    const enteredAddress = addressInput.value
+    var G = document.getElementById('address').value
+    local.search(G)
+    // send this to api
+    // axios
+    //   .get(`url`)
+    //   .then(response => {
+    //     console.log(response)
+    //   })
+    //   .catch((err) => console.log(error))
+  }
+
+  form?.addEventListener('submit', searchAddressHandler)
+</script>
