@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const WebpackConfig = require('./webpack.config') // 从 webpack.config.js 文件中读取 Webpack 配置
-
+const router = require('./router')
 
 const app = express()
 
@@ -52,16 +52,7 @@ app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Router 路由设置
-const router = express.Router()
-router.get('/simple/get', (req, res) => {
-  res.json({
-    msg: 'hello simple'
-  })
-})
-router.get('/base/get', function(req, res) {
-  res.json(req.query)
-})
+
 app.use(router)
 
 const port = process.env.PORT || 8080

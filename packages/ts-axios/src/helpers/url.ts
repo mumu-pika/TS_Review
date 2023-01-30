@@ -1,5 +1,5 @@
 // buildURL 实现一个工具函数，把 params 拼接到 url 上
-import { isDate, isObject } from './util'
+import { isDate, isPlainObject } from './util'
 
 function encode(val: string): string {
   return encodeURIComponent(val)
@@ -12,7 +12,7 @@ function encode(val: string): string {
     .replace(/%5D/gi, ']')
 }
 
-export function bulidURL(url: string, params?: any) {
+export function buildURL(url: string, params?: any) {
   if (!params) {
     return url
   }
@@ -34,7 +34,7 @@ export function bulidURL(url: string, params?: any) {
     values.forEach(val => {
       if (isDate(val)) {
         val = val.toISOString()
-      } else if (isObject(val)) {
+      } else if (isPlainObject(val)) {
         val = JSON.stringify(val)
       }
       parts.push(`${encode(key)}=${encode(val)}`)
@@ -44,9 +44,9 @@ export function bulidURL(url: string, params?: any) {
   let serializedParams = parts.join('&')
 
   if (serializedParams) {
-    const markIndex = url.indexOf('#')
-    if (markIndex !== -1) {
-      url = url.slice(0, markIndex)
+    const indexMarked = url.indexOf('#')
+    if (indexMarked !== -1) {
+      url = url.slice(0, indexMarked)
     }
 
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams

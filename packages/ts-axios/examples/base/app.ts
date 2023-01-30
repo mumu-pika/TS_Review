@@ -1,5 +1,4 @@
 import axios from '../../src/index'
-
 // Request URL: http://localhost:8080/base/get?foo[]=bar&foo[]=baz
 axios({
   method: 'get',
@@ -65,4 +64,22 @@ axios({
   params: {
     bar: 'baz'
   }
+})
+
+// 第一个post请求的data是一个普通对象
+axios({
+  method: 'post',
+  url: '/base/post',
+  data: {
+    a: 1,
+    b: 2
+  }
+})
+
+// 第二个post请求的data是一个Int32Array类型的数据
+const arr = new Int32Array([21, 31])
+axios({
+  method: 'post',
+  url: '/base/buffer',
+  data: arr
 })
