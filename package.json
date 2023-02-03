@@ -4,7 +4,7 @@
   "description": "some projects with typescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "yarn workspaces run test",
     "prepare": "husky install"
   },
   "repository": {
@@ -23,6 +23,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",

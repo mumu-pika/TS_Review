@@ -19,10 +19,10 @@ function processConfig(config: AxiosRequestConfig): void {
 
 function transformUrl(config: AxiosRequestConfig): string {
   const { url, params } = config
-  return buildURL(url, params)
+  return buildURL(url, params) // 返回拼接处理后的url
 }
 
 function transformRequestData(config: AxiosRequestConfig): any {
-  return transformRequest(config.data)
+  return transformRequest(config.data) // 返回JSON化后的数据
 }
 

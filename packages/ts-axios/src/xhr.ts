@@ -8,4 +8,5 @@ export default function xhr(config: AxiosRequestConfig) {
   // xhrReq.open(method, url, async) async为一个可选的布尔参数，表示是否异步执行操作，默认为 true。
   xhr.open(method.toUpperCase(), url, true)
   xhr.send(data)
+  
 }

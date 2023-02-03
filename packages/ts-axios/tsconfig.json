@@ -15,12 +15,16 @@
     // 声明文件目录
     "typeRoots": [
       "node_modules/@types",
-      "types"
+      "types",
+      "@types/jest",
+      "jest"
     ]
   },
   // 设置需要编译的范围, 也就是.ts文件所在的地方
   "include": [
     "src",
-    "types"
-  ]
+    "types",
+    "tests"
+  ],
+  // "exclude": ["node_modules"]
 }
