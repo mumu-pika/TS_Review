@@ -1,0 +1,36 @@
+{
+  "name": "ts-challenge",
+  "version": "1.0.0",
+  "description": "practice typescript",
+  "keywords": [
+    "typescript"
+  ],
+  "author": "mumu <rmli1912@foxmail.com>",
+  "homepage": "https://github.com/mumu-pika/TS_Review/tree/main/packages/ts-challenge#readme",
+  "license": "MIT",
+  "main": "lib/ts-challenge.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mumu-pika/TS_Review.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/ts-challenge.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/mumu-pika/TS_Review/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@type-challenges/utils": "^0.1.1"
+  }
+}
