@@ -2,5 +2,13 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "useWorkspaces": true,
   "version": "independent",
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "bootstrap": {
+      "hoist": "true"
+    }
+  }
 }

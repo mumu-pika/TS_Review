@@ -15,9 +15,8 @@
     // 声明文件目录
     "typeRoots": [
       "node_modules/@types",
-      "types",
-      "@types/jest",
-      "jest"
+      "../../node_modules/@types",
+      "types"
     ]
   },
   // 设置需要编译的范围, 也就是.ts文件所在的地方
